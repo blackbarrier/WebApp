@@ -1,0 +1,13 @@
+For easing your development we seperate the layouts in your purchased package.
+
+"Versions" folder contain seperate layouts like which you shown on our live demo.
+
+1.BOX
+2.Dark
+3.Dark-Light
+4.Light-Dark
+5.Side-image
+
+
+If you whould like to use any of the above folder - please copy / move folder to your directory along with "files" folder (i.e which in your upmost folder).
+
