@@ -12,7 +12,7 @@ class TestController extends AbstractController
     public function index(): Response
     {
         $rol = $this->getUser();
-        dd($rol);
+        // dd($rol);
 
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',

@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TestController!{% endblock %}
+{% block title %}TestController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    
+    {% if "ROLE_PACIENTE" in app.user.getRoles() %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <h1>Titulo de titulo</h1>
+        
+    {% endif %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/WebApp/src/Controller/TestController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/WebApp/templates/test/index.html.twig</code></li>
-    </ul>
-</div>
+    {% if "ROLE_MEDICO" in app.user.getRoles() %}        
+
+        ROL DE USUARIO MEDICO
+        
+    {% endif %}
+   
 {% endblock %}
