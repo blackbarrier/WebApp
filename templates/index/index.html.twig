@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block body %}
+    
+    {% if "ROLE_PACIENTE" in app.user.getRoles() %}
+
+        <h1>Titulo de titulo de paciente</h1>
+        
+    {% endif %}
+
+    {% if "ROLE_MEDICO" in app.user.getRoles() %}     
+        ROL DE USUARIO MEDICO        
+    {% endif %}
+   
+{% endblock %}

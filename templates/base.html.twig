@@ -152,7 +152,9 @@
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="{{asset('HTML/Template/files/assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
+                                        
                                     <span>{{ app.user.userIdentifier }}</span>
+                                    
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -177,7 +179,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="auth-normal-sign-in.html">
+                                        <a href="{{path('app_logout')}}">
                                         <i class="ti-layout-sidebar-left"></i> Logout
                                     </a>
                                     </li>
@@ -300,12 +302,13 @@
                     <div class="pcoded-inner-navbar">
                         <ul class="pcoded-item pcoded-left-item">
 
+                            
                             {% if 'ROLE_MEDICO' in app.user.getRoles() %}
 
                             <li class="pcoded-hasmenu">
                                 <a href="javascript:void(0)">
                                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                                    <span class="pcoded-mtext">Navigation</span>
+                                    <span class="pcoded-mtext">MEDICO</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
@@ -513,7 +516,7 @@
                             <li class="pcoded-hasmenu">
                                 <a href="javascript:void(0)">
                                     <span class="pcoded-micon"><i class="ti-gift "></i><b>U</b></span>
-                                    <span class="pcoded-mtext">UI Element</span>
+                                    <span class="pcoded-mtext">MEDICO</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
@@ -872,7 +875,7 @@
                             <li class="pcoded-hasmenu">
                                 <a href="javascript:void(0)">
                                     <span class="pcoded-micon"><i class="ti-pencil-alt"></i><b>F</b></span>
-                                    <span class="pcoded-mtext">Forms</span>
+                                    <span class="pcoded-mtext">MEDICO</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
@@ -1068,7 +1071,7 @@
                             <li class="pcoded-hasmenu">
                                 <a href="javascript:void(0)">
                                     <span class="pcoded-micon"><i class="ti-view-list-alt"></i><b>T</b></span>
-                                    <span class="pcoded-mtext">Tables</span>
+                                    <span class="pcoded-mtext">PACIENTE</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
@@ -1363,7 +1366,7 @@
                             <li class="pcoded-hasmenu">
                                 <a href="javascript:void(0)">
                                     <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i><b>C</b></span>
-                                    <span class="pcoded-mtext">Chart And Maps</span>
+                                    <span class="pcoded-mtext">PACIENTE</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
