@@ -62,11 +62,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $domicilio = null;
 
-    #[ORM\Column]
-    private ?int $edad = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $fnac = null;
+
+    #[ORM\ManyToOne]
+    private ?Obrasocial $obrasocial = null;
 
     public function getId(): ?int
     {
@@ -243,17 +243,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getEdad(): ?int
-    {
-        return $this->edad;
-    }
-
-    public function setEdad(int $edad): static
-    {
-        $this->edad = $edad;
-
-        return $this;
-    }
 
     public function getFnac(): ?\DateTimeInterface
     {
@@ -263,6 +252,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFnac(?\DateTimeInterface $fnac): static
     {
         $this->fnac = $fnac;
+
+        return $this;
+    }
+
+    public function getObrasocial(): ?Obrasocial
+    {
+        return $this->obrasocial;
+    }
+
+    public function setObrasocial(?Obrasocial $obrasocial): static
+    {
+        $this->obrasocial = $obrasocial;
 
         return $this;
     }
