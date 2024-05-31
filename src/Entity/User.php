@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use App\Entity\Rol;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -36,6 +37,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Rol $rol = null;
+
+    #[ORM\Column]
+    private ?bool $borrado = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Apellido = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Nombre = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $matricula = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $especialidad = null;
+
+    #[ORM\Column]
+    private ?int $telefono = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $domicilio = null;
+
+    #[ORM\Column]
+    private ?int $edad = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $fnac = null;
 
     public function getId(): ?int
     {
@@ -111,6 +142,127 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRol(?Rol $rol): static
     {
         $this->rol = $rol;
+
+        return $this;
+    }
+
+
+    public function isBorrado(): ?bool
+    {
+        return $this->borrado;
+    }
+
+    public function setBorrado(bool $borrado): static
+    {
+        $this->borrado = $borrado;
+
+        return $this;
+    }
+
+    public function getApellido(): ?string
+    {
+        return $this->Apellido;
+    }
+
+    public function setApellido(string $Apellido): static
+    {
+        $this->Apellido = $Apellido;
+
+        return $this;
+    }
+
+    public function getNombre(): ?string
+    {
+        return $this->Nombre;
+    }
+
+    public function setNombre(string $Nombre): static
+    {
+        $this->Nombre = $Nombre;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getMatricula(): ?string
+    {
+        return $this->matricula;
+    }
+
+    public function setMatricula(?string $matricula): static
+    {
+        $this->matricula = $matricula;
+
+        return $this;
+    }
+
+    public function getEspecialidad(): ?string
+    {
+        return $this->especialidad;
+    }
+
+    public function setEspecialidad(?string $especialidad): static
+    {
+        $this->especialidad = $especialidad;
+
+        return $this;
+    }
+
+    public function getTelefono(): ?int
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono(int $telefono): static
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    public function getDomicilio(): ?string
+    {
+        return $this->domicilio;
+    }
+
+    public function setDomicilio(?string $domicilio): static
+    {
+        $this->domicilio = $domicilio;
+
+        return $this;
+    }
+
+    public function getEdad(): ?int
+    {
+        return $this->edad;
+    }
+
+    public function setEdad(int $edad): static
+    {
+        $this->edad = $edad;
+
+        return $this;
+    }
+
+    public function getFnac(): ?\DateTimeInterface
+    {
+        return $this->fnac;
+    }
+
+    public function setFnac(?\DateTimeInterface $fnac): static
+    {
+        $this->fnac = $fnac;
 
         return $this;
     }
