@@ -24,6 +24,19 @@ class Turno
     #[ORM\JoinColumn(nullable: false)]
     private ?EstadoTurno $estado = null;
 
+    #[ORM\Column]
+    private ?int $paciente = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $descripcion = null;
+
+    #[ORM\Column]
+    private ?int $severidad = 1;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Medico $medico = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +74,55 @@ class Turno
     public function setEstado(?EstadoTurno $estado): static
     {
         $this->estado = $estado;
+
+        return $this;
+    }
+
+    public function getPaciente(): ?int
+    {
+        return $this->paciente;
+    }
+
+    public function setPaciente(int $paciente): static
+    {
+        $this->paciente = $paciente;
+
+        return $this;
+    }
+
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(string $descripcion): static
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    public function getSeveridad(): ?int
+    {
+        return $this->severidad;
+    }
+
+    public function setSeveridad(int $severidad): static
+    {
+        $this->severidad = $severidad;
+
+        return $this;
+    }
+
+    public function getMedico(): ?Medico
+    {
+        return $this->medico;
+    }
+
+    public function setMedico(?Medico $medico): static
+    {
+        $this->medico = $medico;
 
         return $this;
     }

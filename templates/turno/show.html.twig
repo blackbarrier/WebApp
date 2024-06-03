@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Turno{% endblock %}
+
+{% block body %}
+    <h1>Turno</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ turno.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ turno.fecha ? turno.fecha|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>FechaSolicitado</th>
+                <td>{{ turno.fechaSolicitado ? turno.fechaSolicitado|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Paciente</th>
+                <td>{{ turno.paciente }}</td>
+            </tr>
+            <tr>
+                <th>Medico</th>
+                <td>{{ turno.medico.nombre }} {{ turno.medico.apellido }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ turno.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Severidad</th>
+                <td>{{ turno.severidad }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_turno_index') }}">Volver</a>
+
+    {# <a href="{{ path('app_turno_edit', {'id': turno.id}) }}">edit</a> #}
+
+    {# {{ include('turno/_delete_form.html.twig') }} #}
+{% endblock %}

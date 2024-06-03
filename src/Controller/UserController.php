@@ -42,10 +42,8 @@ class UserController extends AbstractController
                 $entityManager->flush();
             }else{
                 // dd("ExisteDNI");
-                $this->addFlash("error", "Ya existe un usuario con el mismo DNI.");
                 return $this->redirectToRoute('app_user_new', [], Response::HTTP_SEE_OTHER);
             }
-            $this->addFlash("success", "El nuevo usuario fue creado con éxito.");
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         }
 

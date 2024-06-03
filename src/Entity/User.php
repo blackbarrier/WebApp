@@ -50,12 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $matricula = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $especialidad = null;
-
     #[ORM\Column]
     private ?int $telefono = null;
 
@@ -191,30 +185,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getMatricula(): ?string
-    {
-        return $this->matricula;
-    }
-
-    public function setMatricula(?string $matricula): static
-    {
-        $this->matricula = $matricula;
-
-        return $this;
-    }
-
-    public function getEspecialidad(): ?string
-    {
-        return $this->especialidad;
-    }
-
-    public function setEspecialidad(?string $especialidad): static
-    {
-        $this->especialidad = $especialidad;
 
         return $this;
     }

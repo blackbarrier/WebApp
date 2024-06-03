@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Turno{% endblock %}
+
+{% block body %}
+    <h1>Edit Turno</h1>
+
+    {{ include('turno/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_editar_index') }}">back to list</a>
+{% endblock %}

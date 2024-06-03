@@ -6,12 +6,27 @@
     
     {% if "ROLE_PACIENTE" in app.user.getRoles() %}
 
-        <h1>Titulo de titulo de paciente</h1>
+        <a href="{{path('app_turno_new')}}">Solicitar Turno</a>
+        <br>
+        <a href="{{path('app_turno_index')}}">Ver mis turnos</a>
+        <br>
+        <a href="{{path('app_editar_index')}}">Modificar mis turnos</a>
+        <br>
+        {# <a href="{{path('app_user_show')}}">Modificar mis datos</a> #}
         
     {% endif %}
 
     {% if "ROLE_MEDICO" in app.user.getRoles() %}     
-        ROL DE USUARIO MEDICO        
+        ROL DE USUARIO MEDICO
+    {% endif %}
+
+    {% if "ROLE_SUPER_ADMIN" in app.user.getRoles() %}     
+        <a href="{{path('app_turno_new')}}">Alta usuarios</a>
+        <br>
+        <a href="{{path('app_turno_index')}}">Alta medicos</a>
+        <br>
+        <a href="{{path('app_turno_index')}}">Nuevo turno</a>
+        <br>
     {% endif %}
    
 {% endblock %}

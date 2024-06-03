@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mis turnos{% endblock %}
+
+{% block body %}
+    <h1>Mis turnos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha de turno</th>
+                <th>Fecha solicitado</th>
+                <th>Paciente</th>
+                <th>Medico</th>
+                <th>Descripcion</th>
+                {# <th>Severidad</th> #}
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for turno in turnos %}
+            <tr>
+                <td>{{ turno.id }}</td>
+                <td>{{ turno.fecha ? turno.fecha|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ turno.fechaSolicitado ? turno.fechaSolicitado|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ turno.paciente }}</td>
+                <td>{{ turno.medico.nombre }} {{turno.medico.apellido}}</td>
+                <td>{{ turno.descripcion }}</td>
+                {# <td>{{ turno.severidad }}</td> #}
+                <td>
+                    <a href="{{ path('app_turno_show', {'id': turno.id}) }}">Ver turno</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Todavia no tiene ningun turno</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_index') }}">Volver al Inicio</a>
+{% endblock %}
