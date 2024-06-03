@@ -8,12 +8,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Fecha de turno</th>
-                <th>Fecha solicitado</th>
-                <th>Paciente</th>
+                {# <th>Fecha solicitado</th> #}
+                {# <th>Paciente</th> #}
                 <th>Medico</th>
                 <th>Descripcion</th>
+                <th>Estado</th>
                 {# <th>Severidad</th> #}
                 <th>Acciones</th>
             </tr>
@@ -21,12 +22,13 @@
         <tbody>
         {% for turno in turnos %}
             <tr>
-                <td>{{ turno.id }}</td>
-                <td>{{ turno.fecha ? turno.fecha|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ turno.fechaSolicitado ? turno.fechaSolicitado|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ turno.paciente }}</td>
+                {# <td>{{ turno.id }}</td> #}
+                <td><b>{{ turno.fecha ? turno.fecha|date('d/m/y H:i:s') : '' }}</b></td>
+                {# <td>{{ turno.fechaSolicitado ? turno.fechaSolicitado|date('Y-m-d H:i:s') : '' }}</td> #}
+                {# <td>{{ turno.paciente }}</td> #}
                 <td>{{ turno.medico.nombre }} {{turno.medico.apellido}}</td>
                 <td>{{ turno.descripcion }}</td>
+                <td>{{ turno.estado.descripcion }}</td>
                 {# <td>{{ turno.severidad }}</td> #}
                 <td>
                     <a href="{{ path('app_turno_show', {'id': turno.id}) }}">Ver turno</a>
