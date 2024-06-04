@@ -22,30 +22,30 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dni', NumberType::class, [
-                "required" => true,
-                "label" => false,
-                "attr" => [
-                    "class" => "form-control",
-                    'placeholder' => 'DNI',
-                    "pattern" => "[0-9]{8}",
-                    "title"     => "Ingrese 8 digitos para su DNI ",
-                    "required" => true
-                ],
-            ])
+            // ->add('dni', NumberType::class, [
+            //     "required" => true,
+            //     "label" => false,
+            //     "attr" => [
+            //         "class" => "form-control",
+            //         'placeholder' => 'DNI',
+            //         "pattern" => "[0-9]{8}",
+            //         "title"     => "Ingrese 8 digitos para su DNI ",
+            //         "required" => true
+            //     ],
+            // ])
 
-            ->add('password', PasswordType::class, [
-                "required" => true,
-                "label" => false,
-                "attr" => [
-                    "class" => "form-control",
-                    'placeholder' => 'Contraseña',
-                ],
-            ])
+            // ->add('password', PasswordType::class, [
+            //     "required" => true,
+            //     "label" => false,
+            //     "attr" => [
+            //         "class" => "form-control",
+            //         'placeholder' => 'Contraseña',
+            //     ],
+            // ])
 
             ->add('apellido', TextType::class, [
                 "required" => true,
-                "label" => false,
+                "label" => "Apellido",
                 "attr" => [
                     "class" => "form-control",
                     'placeholder' => 'Apellido',
@@ -54,7 +54,7 @@ class UserType extends AbstractType
 
             ->add('nombre', TextType::class, [
                 "required" => true,
-                "label" => false,
+                "label" => "Nombre",
                 "attr" => [
                     "class" => "form-control",
                     'placeholder' => 'Nombre',
@@ -63,7 +63,7 @@ class UserType extends AbstractType
 
             ->add('email', EmailType::class,[
                 "required" => true,
-                "label" => false,                
+                "label" => "Email",                
                 "attr" => [
                     "class" => "form-control",
                     'placeholder' => 'Email',
@@ -72,7 +72,7 @@ class UserType extends AbstractType
 
             ->add('telefono', NumberType:: class,[
                 "required" => true,
-                "label" => false, 
+                "label" => "Teléfono", 
                 "attr" => [
                     "class" => "form-control",
                     'placeholder' => 'Telefono',
@@ -84,7 +84,7 @@ class UserType extends AbstractType
 
             ->add('domicilio', TextType::class, [
                 "required" => true,
-                "label" => false,
+                "label" => "Domicilio",
                 "attr" => [
                     "class" => "form-control",
                     'placeholder' => 'Domicilio',
@@ -92,7 +92,7 @@ class UserType extends AbstractType
             ])
             ->add('fnac', DateType::class, [
                 'widget' => 'single_text',
-                'label' => 'Fecha de Nacimiento',
+                'label' => 'Fecha de nacimiento',
                 'label_attr' => [
                     'color' => 'blue'
                 ],
@@ -104,7 +104,7 @@ class UserType extends AbstractType
             ])
             ->add('obrasocial', EntityType::class, [
                 "required" => true,
-                "label" => false,
+                "label" => "Obra social",
                 'class' => Obrasocial::class,
                 'choice_label' => 'obraSocial',
                 "attr" => [

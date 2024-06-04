@@ -9,3 +9,12 @@
 
     <a href="{{ path('app_index') }}">Volver</a>
 {% endblock %}
+{% block javascript %}
+<script>
+    $("#turno_fecha").on("change",function(){ 
+        console.log("entre");
+        console.log($("#turno_fecha").val());
+    });
+</script>
+    
+{% endblock %}

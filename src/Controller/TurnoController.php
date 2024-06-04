@@ -11,6 +11,7 @@ use App\Repository\EstadoTurnoRepository;
 use App\Repository\MedicoRepository;
 use App\Repository\TurnoRepository;
 use ContainerK6J2kLI\getUserService;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,8 +56,14 @@ class TurnoController extends AbstractController
         $form = $this->createForm(TurnoType::class, $turno);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {            
             
+
+            $fechaActual =$turno->getFecha();
+                                    //hora, min y seg
+            $fechaActual->setTime(01,01,01);
+            $turno->setFecha($fechaActual);
+        
             $turno->setFechaSolicitado($hoy);
             $turno->setPaciente($user);
             $turno->setEstado($estadoTurnoRepository->find(1));
@@ -81,7 +88,7 @@ class TurnoController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_turno_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Turno $turno, EntityManagerInterface $entityManager, EstadoRepository $estadoTurnoRepository): Response
+    public function edit(Request $request, Turno $turno, EntityManagerInterface $entityManager, EstadoTurnoRepository $estadoTurnoRepository): Response
     {
         $form = $this->createForm(TurnoType::class, $turno);
         $form->handleRequest($request);

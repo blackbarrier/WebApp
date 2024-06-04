@@ -12,7 +12,7 @@
         <br>
         <a href="{{path('app_editar_index')}}">Modificar mis turnos</a>
         <br>
-        {# <a href="{{path('app_user_show')}}">Modificar mis datos</a> #}
+        <a href="{{path('app_user_show', {'id': app.user.id}) }}">Mis datos</a>
         
     {% endif %}
 
