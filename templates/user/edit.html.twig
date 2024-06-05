@@ -5,7 +5,42 @@
 {% block body %}
     <h1>Edit User</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ form_start(form) }}
+    <table class="table">
+        <tbody>   
+            <tr>
+                <th>Apellido</th>
+                <td>{{ form_widget(form.apellido) }}</td>                
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ form_widget(form.nombre) }}</td>                
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ form_widget(form.email) }}</td>              
+            </tr>
+            <tr>
+                <th>Teléfono</th>
+                <td>{{ form_widget(form.telefono) }}</td>
+            </tr>
+            <tr>
+                <th>Domicilio</th>
+                <td>{{ form_widget(form.domicilio) }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de nacimiento</th>
+                <td>{{ form_widget(form.fnac) }}</td>
+            </tr>
+            <tr>
+                <th>Obra Social</th>
+                <td>{{ form_widget(form.obrasocial) }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {{ form_end(form) }}  
+
+    
 
     <a href="{{ path('app_index') }}">Volveer</a>
 

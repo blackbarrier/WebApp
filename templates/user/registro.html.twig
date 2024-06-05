@@ -37,19 +37,18 @@
 
 <body class="multi-step-sign-up">
     <!-- Pre-loader start -->
-    <div class="theme-loader">
+    {# <div class="theme-loader">
         <div class="loader-track">
             <div class="loader-bar"></div>
         </div>
-    </div>
+    </div> #}
     <!-- Pre-loader end -->
-    <form id="msform">
+    <div id="msform">
     {{ form_start(form) }}
         <!-- progressbar -->
         <ul id="progressbar">
             <li class="active"></li>
             <li></li>
-            {# <li>Personal Details</li> #}
         </ul>
         <!-- fieldsets -->
         <fieldset>
@@ -66,21 +65,18 @@
                 {{ form_widget(form.password) }}
             </div>
             <div class="form-group">
-
                 <input type="password" class="form-control" name="cpass" placeholder="Confirme contraseña" />
                 {# {{ form_widget(form.password) }} #}
 
             </div>
+
+            <br>
             <button type="button" name="next" class="btn btn-primary next" value="Next">Siguiente</button>
-            <br>
             <hr/>
-            <br>
-            <a href="{{ path('app_login') }}">
-            <button type="button" name="next" class="btn btn-secondary btn-md btn-block waves-effect text-center m-b-20">Volver al login</button>
-            </a>
+            <a href="{{ path('app_login') }}"><button type="button" name="next" class="btn btn-secondary btn-md btn-block waves-effect text-center m-b-20">Volver al login</button></a>
+        
         </fieldset>
-        <fieldset class="">
-       
+        <fieldset class="">       
             <img class="logo" src="{{asset('HTML/Template/files/assets/images/logo-blue.png')}}" alt="logo.png">
             <h2 class="fs-title">Social Profiles</h2>
             <h3 class="fs-subtitle">Little bit about your presence on social media</h3>
@@ -96,62 +92,27 @@
              <div class="form-group">
                 {{ form_widget(form.domicilio) }}        
             </div>
-            {# <div class="form-group">
-                {{ form_label(form.fnac) }}
-            </div> #}
 
             <div class="form-group">
                 {{ form_row(form.fnac) }}      
             </div>
 
-
-             <div class="form-group" style="text-align:left">
+            <div class="form-group" style="text-align:left">
                 {{ form_label(form.obrasocial) }}      
                 {{ form_widget(form.obrasocial) }}      
-            </div>
-            
+            </div>            
        
-            <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Volver</button>
-            {# <button type="button" name="next" class="btn btn-primary next" value="Next">Next</button> #}
             <br>
+            <button type="button" name="previous" class="btn btn-secondary previous" value="Previous">Volver</button>
+            <button class="btn btn-primary">{{ button_label|default('Crear usuario') }}</button>
             <hr/>
-            <br>
-            <a href="{{ path('app_login') }}">
-            <button type="button" name="next" class="btn btn-secondary btn-md btn-block waves-effect text-center m-b-20">Volver al login</button>
-            </a>
-            <button type="button" name="next" class="btn btn-primary next" value="Next">{{ button_label|default('Crear usuario') }}</button>
-            <button type="submit" class="btn btn-primary" value="submit">{{ button_label|default('Crear usuario') }}</button>
-
-        </fieldset>
-        {# <fieldset> #}
-            {# <img class="logo" src="{{asset('HTML/Template/files/assets/images/logo-blue.png')}}" alt="logo.png">
-            <h2 class="fs-title">Personal Details</h2>
-            <h3 class="fs-subtitle">And something about yourself!</h3>
-            <div class="form-group">
-                <input type="text" class="form-control" name="fname" placeholder="First Name" />
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="lname" placeholder="Last Name" />
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="phone" placeholder="Phone" />
-            </div>
-            <div class="form-group">
-                <textarea name="address" class="form-control" placeholder="Address"></textarea>
-            </div>
-            <button type="button" name="previous" class="btn btn-inverse btn-outline-inverse previous" value="Previous">Previous</button>
-            <button type="button" name="next" class="btn btn-primary" value="submit">Submit</button>
-            <br>
-            <hr/>
-            <br>
-            <a href="{{ path('app_user_index') }}">
-            <button type="button" name="next" class="btn btn-secondary btn-md btn-block waves-effect text-center m-b-20">Volver al login</button>
-            </a> #}
-            
-        {# </fieldset>  #}
+            {# <br> #}
+            {# <button type="button" name="next" class="btn btn-primary next" value="Next">{{ button_label|default('Crear usuario') }}</button> #}
+            <a href="{{ path('app_login') }}"><button type="button" name="next" class="btn btn-secondary previous">Volver al login</button></a>
+        </fieldset>  
 
     {{ form_end(form) }}
-    </form>
+    </div>
 
     <!-- Warning Section Starts -->
     <!-- Older IE warning message -->
