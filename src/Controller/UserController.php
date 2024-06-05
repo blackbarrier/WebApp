@@ -29,8 +29,9 @@ class UserController extends AbstractController
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            dd("Formulario enviado");
 
             $userEncontrado= $userRepository->findby(["dni"=> $user->getDni()]);
             if(!$userEncontrado){

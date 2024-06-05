@@ -22,26 +22,26 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('dni', NumberType::class, [
-            //     "required" => true,
-            //     "label" => false,
-            //     "attr" => [
-            //         "class" => "form-control",
-            //         'placeholder' => 'DNI',
-            //         "pattern" => "[0-9]{8}",
-            //         "title"     => "Ingrese 8 digitos para su DNI ",
-            //         "required" => true
-            //     ],
-            // ])
+            ->add('dni', NumberType::class, [
+                "required" => true,
+                "label" => false,
+                "attr" => [
+                    "class" => "form-control",
+                    'placeholder' => 'DNI',
+                    "pattern" => "[0-9]{8}",
+                    "title"     => "Ingrese 8 digitos para su DNI ",
+                    "required" => true
+                ],
+            ])
 
-            // ->add('password', PasswordType::class, [
-            //     "required" => true,
-            //     "label" => false,
-            //     "attr" => [
-            //         "class" => "form-control",
-            //         'placeholder' => 'Contraseña',
-            //     ],
-            // ])
+            ->add('password', PasswordType::class, [
+                "required" => true,
+                "label" => false,
+                "attr" => [
+                    "class" => "form-control",
+                    'placeholder' => 'Contraseña',
+                ],  
+            ])
 
             ->add('apellido', TextType::class, [
                 "required" => true,
