@@ -65,10 +65,13 @@
                 {{ form_widget(form.password) }}
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="cpass" placeholder="Confirme contraseña" />
-                {# {{ form_widget(form.password) }} #}
-
+                {{ form_widget(form.password2) }}
             </div>
+            
+            {# <div class="form-group">
+                <input type="password" class="form-control" name="cpass" placeholder="Confirme contraseña" />
+                {{ form_widget(form.password) }}
+            </div> #}
 
             <br>
             <button type="button" name="next" class="btn btn-primary next" value="Next">Siguiente</button>
