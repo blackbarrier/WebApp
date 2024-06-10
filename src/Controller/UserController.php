@@ -87,33 +87,33 @@ class UserController extends AbstractController
     #[Route('/{id}/change_password', name: 'app_change_pass', methods: ['GET', 'POST'])]
     public function cambiar_pass(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
+        $user_pass = $this->getUser()->getPassword();
         $form = $this->createForm(PasswordChangeType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            // $pass_old=($form->get('password_old')->getData());
-            $pass_old=($form->getData(('password_old'))->getData());
+                        
+            $pass_old= ($form->get(('password_old'))->getData());
             $new_pass=($form->get('password')->getData());
             $new_pass2=($form->get('password2')->getData());
 
-            dd($pass_old,$new_pass,$new_pass2);
+            // dd($pass_old, $user_pass);         
 
-            if (password_verify($pass_old, $this->getUser()->getPassword())){
-
-                if ($new_pass == $new_pass2){                    
+            if (password_verify($pass_old, $user_pass)){
+               
+                if ($new_pass==$new_pass2){
+                    $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));                    
+                    $entityManager->flush();
+                    return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
+                    // dd("Contraseña cambiada");                    
                 }else{
-                    
+                    dd("Las contraseñas no coinciden");                    
                 }
                 
             }else{
-                dd("Contraseña actual incorrecta");
+                dd("Contraseña actual incorrecta", $pass_old, $this->getUser()->getPassword());
             }
             
-            
-            
-            $entityManager->persist($user);
-            $entityManager->flush();
             return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -31,7 +31,28 @@
                 <td>{{ turno.estado.descripcion }}</td>
                 {# <td>{{ turno.severidad }}</td> #}
                 <td>
-                    <a href="{{ path('app_turno_show', {'id': turno.id}) }}">Ver turno</a>
+                    <a href="{{ path('app_turno_show', {'id': turno.id}) }}">&nbsp;
+                        <button class="btn btn-success btn-icon pl-2">
+                            <i class="icofont icofont-eye-alt"></i>
+                        </button>
+                    </a>
+
+                    <a href="{{ path('app_turno_edit', {'id': turno.id}) }}">&nbsp;
+                        <button class="btn btn-success btn-icon pl-2">
+                            <i class="icofont icofont-trash"></i>
+                        </button>
+                    </a>
+
+                    
+                    <a href="{{ path('app_turno_delete', {'id': turno.id}) }}" >
+                    <button class="btn btn-danger btn-icon pl-2">
+                        <i class="icofont icofont-trash"></i>
+                    </button>
+                    </a>
+
+                        {# {{ include('turno/_delete_form.html.twig') }} #}
+                    
+
                 </td>
             </tr>
         {% else %}
@@ -41,6 +62,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <br>
 
-    <a href="{{ path('app_index') }}">Volver al Inicio</a>
+    <a href="{{ path('app_index') }}" class="btn btn-primary">Volver al Inicio</a>
 {% endblock %}

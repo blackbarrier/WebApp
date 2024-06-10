@@ -37,10 +37,11 @@
             </tr>
         </tbody>
     </table>
+    <br>
 
-    <a href="{{ path('app_turno_index') }}">Volver</a>
+    <a href="{{ path('app_turno_index') }}" class="btn btn-primary">Volver</a>
 
     {# <a href="{{ path('app_turno_edit', {'id': turno.id}) }}">edit</a> #}
 
-    {{ include('turno/_delete_form.html.twig') }}
+    {# {{ include('turno/_delete_form.html.twig') }} #}
 {% endblock %}

@@ -5,7 +5,8 @@
 {% block body %}
     <h1>Edit Turno</h1>
 
-    {{ include('turno/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('turno/_form.html.twig', {'button_label': 'Guardar cambios'}) }}
+    <br>
 
-    <a href="{{ path('app_editar_index') }}">back to list</a>
+    <a href="{{ path('app_turno_index') }}" class="btn btn-primary" >Volver</a>
 {% endblock %}

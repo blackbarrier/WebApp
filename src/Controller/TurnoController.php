@@ -110,14 +110,14 @@ class TurnoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_turno_delete', methods: ['POST'])]
+    #[Route('/borrar/{id}', name: 'app_turno_delete', methods: ['POST',"GET"])]
     public function delete(Request $request, Turno $turno, EntityManagerInterface $entityManager): Response
     {
-        // dd("Borrar");
-        if ($this->isCsrfTokenValid('delete'.$turno->getId(), $request->getPayload()->get('_token'))) {
-            $entityManager->remove($turno);
-            $entityManager->flush();
-        }
+        dd("Borrar");
+        // if ($this->isCsrfTokenValid('delete'.$turno->getId(), $request->getPayload()->get('_token'))) {
+        $entityManager->remove($turno);
+        $entityManager->flush();
+        // }
 
         return $this->redirectToRoute('app_turno_index', [], Response::HTTP_SEE_OTHER);
     }
