@@ -28,12 +28,11 @@ class TurnoType extends AbstractType
                 "attr" => [
                     "class" => "form-control",
                 ],
-                // 'hours' => range(9, 17), // Permitir horas de 9 AM a 5 PM
-                // 'minutes' => 0], // Solo permitir la selección de horas en punto
-                // // 'html5' => false,
             ]
             )
             ->add('hora', ChoiceType::class, [
+            'label' => false,
+
                 'choices' => [
                     '9:00 AM' => '9:00',
                     '10:00 AM' => '10:00',
@@ -44,10 +43,10 @@ class TurnoType extends AbstractType
                     '15:00 PM' => '15:00',
                 ],
                 "attr" => [
-                    "class" => "form-control",
+                    // "class" => "form-control",
                 ],
                 'mapped' => false,
-                'multiple' => false,
+                'multiple' => true,
             ])
             // ->add('fechaSolicitado', null, [
             //     'widget' => 'single_text',
@@ -82,6 +81,8 @@ class TurnoType extends AbstractType
             //     'choice_label' => 'descripcion',
             // ])
         ;
+
+    
     }
 
     public function configureOptions(OptionsResolver $resolver): void

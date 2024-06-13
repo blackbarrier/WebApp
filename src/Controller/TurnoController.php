@@ -14,6 +14,7 @@ use ContainerK6J2kLI\getUserService;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -120,5 +121,21 @@ class TurnoController extends AbstractController
         // }
 
         return $this->redirectToRoute('app_turno_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
+    #[Route('/horarios', name: 'app_turno_get_horarios', methods: ['POST'])]
+    public function get_horarios(Request $request, TurnoRepository $turnoRepository): JsonResponse
+    {        
+        // dd("Asd");
+        $dia = ["dia" => $_POST["dia"] ];
+        $turnosOcupados = $turnoRepository->getTurnosDia($dia);
+        $mssg ="holamundo";
+
+        // return $this->JsonRe($turnosOcupados, Response::HTTP_ACCEPTED);
+        return new JsonResponse(['message' => $mssg], Response::HTTP_OK);
+
+
     }
 }

@@ -3,6 +3,37 @@
 {% block title %}Turnos{% endblock %}
 
 {% block body %}
+
+    <style>
+        #turno_hora {
+            margin:20px 0;
+            height: 50px;
+            border: none;
+            overflow: hidden;
+        }
+    
+        #turno_hora::-moz-focus-inner {
+            border: 0;
+        }
+    
+        #turno_hora:focus {
+            outline: none;
+        }
+    
+        #turno_hora option {
+            width: 80px;
+            font-size: 1.2em;
+            padding: 10px 0;
+            text-align: center;
+            margin-right: 20px;
+            display: inline-block;
+            cursor: pointer;
+            border: rgb(204, 204, 0) solid 1px;
+            border-radius: 5px;
+            color: rgb(204, 204, 0);
+        }
+    </style> 
+
     <h1>Solicitar un turno nuevo</h1>
     <br>
 
@@ -20,10 +51,37 @@
 {% endblock %}
 {% block javascript %}
 <script>
-    $("#turno_fecha").on("change",function(){ 
-        console.log("entre");
-        console.log($("#turno_fecha").val());
+    $(document).ready(function () {
+
+        $("#turno_hora").hide();
+
+
+        $("#turno_fecha").change(function () {
+            
+            var fechaSelect = $("#turno_fecha").val();
+
+            $.ajax({
+                url: "{{path('app_turno_get_horarios')}}",
+                type: 'POST',
+                data: {
+                    'dia':fechaSelect
+                },
+                dataType:"JSON",
+
+                success: function (response) {
+                    console.log("Sucess!");
+                    console.log(response);
+                    },
+                error: function (xhr, status, error) {
+                    // console.log("Respuesta: "+response)
+                    alert('Error al realizar la solicitud:', error);
+                    console.log(error)
+                }
+            });
+            
+            $("#turno_hora").fadeIn(250);
+        });
+
     });
 </script>
-    
 {% endblock %}
