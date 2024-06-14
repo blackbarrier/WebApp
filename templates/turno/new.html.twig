@@ -54,32 +54,50 @@
     $(document).ready(function () {
 
         $("#turno_hora").hide();
-
-
+        
+        
         $("#turno_fecha").change(function () {
             
             var fechaSelect = $("#turno_fecha").val();
+            var horariosOcupados;
 
             $.ajax({
                 url: "{{path('app_turno_get_horarios')}}",
                 type: 'POST',
                 data: {
-                    'dia':fechaSelect
+                    'dia' : fechaSelect
                 },
                 dataType:"JSON",
 
                 success: function (response) {
-                    console.log("Sucess!");
-                    console.log(response);
-                    },
-                error: function (xhr, status, error) {
-                    // console.log("Respuesta: "+response)
-                    alert('Error al realizar la solicitud:', error);
+
+                    horariosOcupados = response;       
+
+                    $("#turno_hora option").each(function () {
+                        
+                        valor = $(this).val();
+                        if (horariosOcupados.turnosOcupados.includes(valor)){
+                            $(this).hide();
+                        }else{
+                            $(this).fadeIn(250);
+                        }                        
+                    });
+
+                },
+
+                error: function (xhr, status, error, response) {
                     console.log(error)
+                    alert('Error al realizar la solicitud:', error);
+                    console.log(response)
                 }
-            });
+
+            });  
             
-            $("#turno_hora").fadeIn(250);
+          
+                               
+                            
+            $("#turno_hora").fadeIn(250);           
+            
         });
 
     });

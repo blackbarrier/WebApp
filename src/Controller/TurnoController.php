@@ -57,13 +57,14 @@ class TurnoController extends AbstractController
         $form = $this->createForm(TurnoType::class, $turno);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {            
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($turno);          
             
 
-            $fechaActual =$turno->getFecha();
-                                    //hora, min y seg
-            $fechaActual->setTime(01,01,01);
-            $turno->setFecha($fechaActual);
+            // $fechaActual =$turno->getFecha();
+            //                         //hora, min y seg
+            // $fechaActual->setTime(01,01,01);
+            // $turno->setFecha($fechaActual);
         
             $turno->setFechaSolicitado($hoy);
             $turno->setPaciente($user);
@@ -127,15 +128,22 @@ class TurnoController extends AbstractController
 
     #[Route('/horarios', name: 'app_turno_get_horarios', methods: ['POST'])]
     public function get_horarios(Request $request, TurnoRepository $turnoRepository): JsonResponse
-    {        
-        // dd("Asd");
-        $dia = ["dia" => $_POST["dia"] ];
-        $turnosOcupados = $turnoRepository->getTurnosDia($dia);
-        $mssg ="holamundo";
+    {
+        // Obtener el valor de 'dia' enviado desde el Ajax
+        $fechaSelect = $request->request->get('dia');
+        $turnosOcupados=[];
 
-        // return $this->JsonRe($turnosOcupados, Response::HTTP_ACCEPTED);
-        return new JsonResponse(['message' => $mssg], Response::HTTP_OK);
+        $turnosDia = $turnoRepository->getTurnosDia($fechaSelect);
+        foreach($turnosDia as $item){
+            $turno=$item['fecha'];
+            $fechaFormateada = $turno->format('H');         
+            $turnosOcupados[] = $fechaFormateada;
+        }
 
+        // Realizar operaciones con $fechaSelect si es necesario
+
+        // Devolver el valor de $fechaSelect al Ajax en formato JSON
+        return new JsonResponse(['turnosOcupados' => $turnosOcupados], Response::HTTP_OK);
 
     }
 }

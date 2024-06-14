@@ -22,20 +22,21 @@ class TurnoRepository extends ServiceEntityRepository
         // Validar los parametros
         if (empty($dia)) {
             throw new \InvalidArgumentException('Search term cannot be empty.');
-        }
-        $fechaControl= $dia->format("Y-m-d");
-        $entityManager = $this->getEntityManager();
-
+        };
+        
+        $entityManager = $this->getEntityManager(); 
         $query = $entityManager->createQuery(
-            'SELECT a FROM App\Entity\Turno a INNER JOIN App\Entity\EstadoTurno e
-            ON a.estado = e.id
-            WHERE a.fecha LIKE :dia AND a.estado = :estado'
+            'SELECT t.fecha FROM App\Entity\Turno t
+            WHERE t.fecha LIKE :dia'
         )
-        // ->andWhere('p.arg > :param')
-        //     ->setParameter('param', $param)
-        ->setParameter('dia', '%' . $fechaControl . '%')
-        ->setParameter('estado', 1);
-            // ->setParameter('activo', 1);
+        ->setParameter('dia', '%'.$dia.'%')
+        ;
+
+        $resultado = $query->getResult();
+
+        return $resultado;
+
+    
         // try {
         //     $tur = 
         // } catch (\Doctrine\ORM\NoResultException $e) {
@@ -47,7 +48,7 @@ class TurnoRepository extends ServiceEntityRepository
         // }
 
         // Return the agents as an array
-        return $query->getResult();
+        
     }
 
 
