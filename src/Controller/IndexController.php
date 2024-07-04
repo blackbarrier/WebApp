@@ -11,6 +11,7 @@ class IndexController extends AbstractController
    #[Route('/index', name: 'app_index')]
     public function index(): Response
     {
+        // dd("Ingreso");
         $rol = $this->getUser()->getRoles();
         // dd($rol);
  

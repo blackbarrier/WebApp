@@ -58,20 +58,23 @@ class TurnoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($turno);          
             
+            //Manejo de fecha y hora
+            $hora=($_POST['turno']['hora'][0]);            
+            $fecha=($_POST['turno']['fecha']);
+            $dateTimeString=$fecha." ".$hora;
+            $dateTime = DateTime::createFromFormat('Y-m-d H:i', $dateTimeString);
 
-            // $fechaActual =$turno->getFecha();
-            //                         //hora, min y seg
-            // $fechaActual->setTime(01,01,01);
-            // $turno->setFecha($fechaActual);
-        
+            $turno->setFecha($dateTime);
             $turno->setFechaSolicitado($hoy);
             $turno->setPaciente($user);
-            $turno->setEstado($estadoTurnoRepository->find(1));
+            $turno->setEstado($estadoTurnoRepository->find(1));            
+                        
+            // dd($turno);
             $entityManager->persist($turno);
             $entityManager->flush();
-
+            
+            // dd("enviado");
             return $this->redirectToRoute('app_turno_index', [], Response::HTTP_SEE_OTHER);
         }
 
