@@ -62,19 +62,17 @@ class TurnoController extends AbstractController
             //Manejo de fecha y hora
             $hora=($_POST['turno']['hora'][0]);            
             $fecha=($_POST['turno']['fecha']);
-            $dateTimeString=$fecha." ".$hora;
+            $dateTimeString=$fecha." ".$hora.":00";
             $dateTime = DateTime::createFromFormat('Y-m-d H:i', $dateTimeString);
 
             $turno->setFecha($dateTime);
             $turno->setFechaSolicitado($hoy);
             $turno->setPaciente($user);
-            $turno->setEstado($estadoTurnoRepository->find(1));            
-                        
-            // dd($turno);
+            $turno->setEstado($estadoTurnoRepository->find(1));   
+              
             $entityManager->persist($turno);
             $entityManager->flush();
             
-            // dd("enviado");
             return $this->redirectToRoute('app_turno_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -92,28 +90,28 @@ class TurnoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_turno_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Turno $turno, EntityManagerInterface $entityManager, EstadoTurnoRepository $estadoTurnoRepository): Response
-    {
-        $form = $this->createForm(TurnoType::class, $turno);
-        $form->handleRequest($request);
-        $hoy = new \DateTime();
-        $user = $this->getUser()->getUserIdentifier();
+    // #[Route('/{id}/edit', name: 'app_turno_edit', methods: ['GET', 'POST'])]
+    // public function edit(Request $request, Turno $turno, EntityManagerInterface $entityManager, EstadoTurnoRepository $estadoTurnoRepository): Response
+    // {
+    //     $form = $this->createForm(TurnoType::class, $turno);
+    //     $form->handleRequest($request);
+    //     $hoy = new \DateTime();
+    //     $user = $this->getUser()->getUserIdentifier();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $turno->setFechaSolicitado($hoy);
-            $turno->setPaciente($user);
-            $turno->setEstado($estadoTurnoRepository->find(1));
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $turno->setFechaSolicitado($hoy);
+    //         $turno->setPaciente($user);
+    //         $turno->setEstado($estadoTurnoRepository->find(1));
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('app_turno_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_turno_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->render('turno/edit.html.twig', [
-            'turno' => $turno,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->render('turno/edit.html.twig', [
+    //         'turno' => $turno,
+    //         'form' => $form,
+    //     ]);
+    // }
 
     #[Route('/borrar/{id}', name: 'app_turno_delete', methods: ['POST',"GET"])]
     public function delete(Request $request, Turno $turno, EntityManagerInterface $entityManager): Response
@@ -149,4 +147,7 @@ class TurnoController extends AbstractController
         return new JsonResponse(['turnosOcupados' => $turnosOcupados], Response::HTTP_OK);
 
     }
+
+    
+    
 }

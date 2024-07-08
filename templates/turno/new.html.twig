@@ -28,22 +28,23 @@
             margin-right: 20px;
             display: inline-block;
             cursor: pointer;
-            border: rgb(204, 204, 0) solid 1px;
+            border: #007bff solid 1px;
             border-radius: 5px;
-            color: rgb(204, 204, 0);
+            color: #007bff;
         }
     </style> 
-
-    <h1>Solicitar un turno nuevo</h1>
+    <div class="row">
+        <div class="col-sm-10">
+            <h1>Solicitar un turno nuevo</h1>            
+        </div>
+        <div class="col-sm-2">
+            <a href="{{ path('app_index') }}"><button class="btn btn-inverse btn-inverse-jag btn-inverse-jag btn-outline-inverse">{{ button_label|default('Volver') }}</button></a>
+        </div>
+    </div>
     <br>
-
-    <div class="col-6">
-        
+    <div class="col-6">        
     {{ include('turno/_form.html.twig') }}
-
-    <br>
-    <br>
-    <a href="{{ path('app_index') }}"><button class="btn btn-primary">{{ button_label|default('Volver') }}</button></a>
+    <br>    
     </div>
     
     
@@ -53,11 +54,9 @@
 <script>
     $(document).ready(function () {
 
-        $("#turno_hora").hide();
+        $("#turno_hora").hide();     
         
-        
-        $("#turno_fecha").change(function () {
-            
+        $("#turno_fecha").change(function () {            
             var fechaSelect = $("#turno_fecha").val();
             var horariosOcupados;
 
@@ -69,10 +68,12 @@
                 },
                 dataType:"JSON",
 
-                success: function (response) {
+                success: function (response) {    
 
-                    horariosOcupados = response;       
+                    horariosOcupados = response;
+                    console.log(horariosOcupados.turnosOcupados.length);
 
+                    
                     $("#turno_hora option").each(function () {
                         
                         valor = $(this).val();
@@ -80,9 +81,12 @@
                             $(this).hide();
                         }else{
                             $(this).fadeIn(250);
-                        }                        
-                    });
-
+                        }                      
+                    });                    
+                    
+                    if(horariosOcupados.turnosOcupados.length ===7){
+                        alert("Todos los horarios ocupados");
+                    }
                 },
 
                 error: function (xhr, status, error, response) {
@@ -91,14 +95,27 @@
                     console.log(response)
                 }
 
-            });  
-            
-          
-                               
+            });       
                             
             $("#turno_hora").fadeIn(250);           
             
         });
+
+        var fechaInput = $('#turno_fecha');
+
+        // Añadir el evento para cuando el usuario intente seleccionar una fecha
+        fechaInput.on('change', function () {
+            var selectedDate = new Date($(this).val());
+            var dayOfWeek = selectedDate.getUTCDay();
+
+            // 0 es Domingo y 6 es Sábado
+            if (dayOfWeek === 0 || dayOfWeek === 6) {
+                alert('No hay atencion dias sabados o domingo.');
+                $(this).val(''); // Limpiar el campo de fecha
+            };
+        })
+
+       
 
     });
 </script>

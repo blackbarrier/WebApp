@@ -85,7 +85,7 @@ class UserType extends AbstractType
                 "attr" => [
                     "class" => "form-control",
                     'placeholder' => 'Telefono',
-                    "pattern" => "[0-9]{8}",
+                    "pattern" => "[0-9]",
                     "title"     => "Ingrese su DNI ",
                     "required" => true
                 ],

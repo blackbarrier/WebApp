@@ -7,7 +7,7 @@
     {% if "ROLE_PACIENTE" in app.user.getRoles() %}
         
         <div class="row">
-            <div class="col-sm-12 col-md-4 col-xl-3">
+            <div class="col-sm-12 col-md-4 col-xl-4">
             <a href="{{path('app_turno_new')}}">
                 <div class="card bg-c-blue order-card">
                     <div class="card-block">
@@ -19,7 +19,7 @@
             </a>
             </div>
 
-            <div class="col-sm-12 col-md-4 col-xl-3">
+            <div class="col-sm-12 col-md-4 col-xl-4">
             <a href="{{path('app_turno_index')}}">
                 <div class="card bg-c-blue order-card">
                     <div class="card-block">
@@ -31,7 +31,7 @@
             </a>
             </div>
 
-            <div class="col-sm-12 col-md-4 col-xl-3">
+            <div class="col-sm-12 col-md-4 col-xl-4">
             <a href="{{path('app_user_show', {'id': app.user.id}) }}">
                 <div class="card bg-c-blue order-card">
                     <div class="card-block">
@@ -53,8 +53,34 @@
         
     {% endif %}
 
-    {% if "ROLE_MEDICO" in app.user.getRoles() %}     
-        ROL DE USUARIO MEDICO
+    {% if "ROLE_MEDICO" in app.user.getRoles() %}
+        <div class="row">
+
+            <div class="col-sm-12 col-md-4 col-xl-4">
+                <a href="{{path('app_turnos_medico')}}">
+                    <div class="card bg-c-blue order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Ver turnos solicitados</h6>
+                            <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>Ver turnos solicitados</span></h2>
+                            <p class="m-b-0">Ver turnos solicitados<span class="f-right">Ver turnos solicitados</span></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-sm-12 col-md-4 col-xl-4">
+                <a href="{{path('app_user_show', {'id': app.user.id}) }}">
+                    <div class="card bg-c-blue order-card">
+                        <div class="card-block">
+                            <h6 class="m-b-20">Mis datos</h6>
+                            <h2 class="text-right"><i class="ti-shopping-cart f-left"></i><span>Mis datos</span></h2>
+                            <p class="m-b-0">Mis datos<span class="f-right">Mis datos</span></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
     {% endif %}
 
     {% if "ROLE_SUPER_ADMIN" in app.user.getRoles() %}     
